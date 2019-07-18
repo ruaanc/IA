@@ -187,4 +187,3 @@ cajazeiras.add_neighbors([
 result = search(joao_pessoa, cajazeiras)
 print(result)
 
-#print(joao_pessoa.neighbors)
