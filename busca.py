@@ -77,8 +77,6 @@ def choose_state(frontier):
     print(lower["state"])
     frontier.clear()
     return lower
-    
-  
 
 
 joao_pessoa = State("João Pessoa")
