@@ -2,6 +2,7 @@ class State(object):
     def __init__(self, name):
         self.name = name
         self.neighbors = []
+        self.explored = []
 
     def add_neighbors(self, states):
         for state in states:
@@ -10,14 +11,12 @@ class State(object):
                 "cost": state[1], 
                 "heuristic": state[2]
                 })
-        
-        
+    
     def __str__(self):
         return self.name
 
     def __repr__(self):
         return self.name
-
 
 def search(initial_state, goal):
     frontier = [{
@@ -26,10 +25,13 @@ def search(initial_state, goal):
         "heuristic": 460
         }]
     explored = set()
-
+    counter = 0
     while True:
-        print(frontier)
+        for i in range(len(frontier)):
+            print("Fronteira:", frontier[i]["state"], frontier[i]["heuristic"])
 
+        counter += 1
+        print("Passo: ", counter)
         if len(frontier) == 0:
             return False
 
@@ -61,23 +63,19 @@ def search(initial_state, goal):
                         "state": neighbor["state"], 
                         "cost": neighbor["cost"] + selected["cost"], 
                         "heuristic": neighbor["heuristic"]
-                    })                        
-    return frontier
-
+                    })                               
+    return frontier   
 
 def choose_state(frontier):
     lower = frontier[0]
-
     for element in frontier:
         element_time = element["cost"] + element["heuristic"]
         lower_time = lower["cost"] + lower["heuristic"]
         if element_time < lower_time:
             lower = element
-
-    print(lower["state"])
+    print("Explorado: ", lower["state"])
     frontier.clear()
     return lower
-
 
 joao_pessoa = State("João Pessoa")
 campina_grande = State("Campina Grande")
